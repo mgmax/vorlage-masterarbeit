@@ -1,0 +1,19 @@
+
+% Typographie für A4-Ausgabe (nicht Präsentationen) mit KOMAscript basierten Klassen (scrbook, scrartcl)
+\usepackage[draft=false]{scrlayer-scrpage} % \cfoot etc. für Kopf/Fußzeilenelemente. Hier draft=false weil sonst "Lineale" für verschiedene Seitenebenen eingezeichnet werden.
+
+
+\pagestyle{scrheadings}
+\newcommand{\entwurfsmarkierung}{\ifdraft{Entwurf, Stand \today}}
+\cfoot[\entwurfsmarkierung]{\entwurfsmarkierung}
+
+\KOMAoptions{paper=a4, fontsize=12pt}
+\KOMAoptions{headsepline, footsepline} % Querlinien als Trennung zwischen Inhal und Kopf- und Fußzeile
+\KOMAoptions{BCOR=8mm} % Bindekorrektur: wieviel wird innenliegende Rand einer halben Doppelseite durch die Bindung und das "Knicken" einer Seite kleiner?
+\usepackage[onehalfspacing]{setspace} % Zeilenhöhe 1.5 
+\usepackage[final,activate={true,nocompatibility},shrink=10,stretch=10]{microtype} % Schrift minimalst stauchen/dehnen, damit Silbentrennung besser klappt
+\KOMAoptions{DIV=14} % Satzspiegel - DIV ist ein ganzzahliger "Frickelfaktor", je größer desto weniger Seitenrand. Das Verhältnis der Seitenränder zueinander folgt dann typographischen Vorgaben, man sollte es deshalb nicht antasten.
+% TODO der Wert 14 kommt der alten Vorlage am nächsten, typographisch wäre ggf. ein größerer automatisch berechneter Rand DIV=calc sinnvoll.
+\KOMAoptions{titlepage=firstiscover} % TODO
+\KOMAoptions{parskip=half-} % TODO Absatzabstand... ungefähr der alten Vorlage nachgemacht
+\KOMAoptions{numbers=noenddot} % keine Punkte nach Nummerierungen wie Kapitelüberschrifen oder Abbildungen (z.B. 1 Einleitung statt 1. Einleitung)

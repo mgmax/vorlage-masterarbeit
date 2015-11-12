@@ -1,0 +1,92 @@
+\documentclass[draft]{max-masterarbeit} % draft entfernen, um die "Entwurf"-Markierung in der Fußzeile zu deaktivieren
+
+\subject{Masterarbeit}
+\title{Toller Titel}
+\author{Maximilian Gaukler}
+
+\newcommand{\lehrstuhl}{Lehrstuhl für Regelungstechnik\\Universität Erlangen-Nürnberg}%
+\newcommand{\datumTitelseite}{April 1234}
+\date{02.03.1234}
+
+\hyphenation{Rausch-an-teil Kor-re-lation Ab-schät-zun-gen Zu-stands-ab-hängig-keit}
+
+%\includeonly{latenzen}
+
+
+\begin{document}
+\frontmatter
+\pagenumbering{alph} % Seitennummerierung anfangs alphabetisch, damit nicht das Deckblatt die gleiche Seitennummer hat wie eine spätere Inhaltsseite
+
+%\cleardoublepage
+\titelseiteLRT
+\pagestyle{empty}
+\cleardoublepage
+\chapter*{Aufgabenstellung}
+\thispagestyle{empty}
+\todo{Aufgabenstellung}
+\cleardoublepage
+\chapter*{Erklärung}
+\thispagestyle{empty}
+Ich versichere, dass ich die vorliegende Arbeit ohne fremde Hilfe und ohne Benutzung anderer als
+der angegebenen Quellen angefertigt habe und dass die Arbeit in gleicher oder ähnlicher Form noch
+keiner anderen Prüfungsbehörde vorgelegen hat und von dieser als Teil einer Prüfungsleistung
+angenommen wurde. Alle Ausführungen, die wörtlich oder sinngemäß übernommen wurden, sind als 
+solche gekennzeichnet.
+
+\vspace{4.5em}
+
+\makeatletter
+\let\thedate\@date
+\let\theauthor\@author
+\makeatother
+\newcommand{\unterschriftsbreite}{.35\linewidth}
+%
+\begin{tikzpicture}[every node/.style={inner sep=0, outer sep=0}]
+	\node[anchor=south west] (o) at (0,0) {Erlangen, den \thedate};
+	\coordinate (rechtsmitte) at ($(\linewidth - 1, 0)$);
+	\draw (o)  (rechtsmitte) -- ++(-\unterschriftsbreite, 0);
+	\node[text width=\unterschriftsbreite, align=center, anchor=north east, yshift=-.5em] (author) at (rechtsmitte) {\theauthor};
+\end{tikzpicture}
+
+\cleardoublepage
+\pagenumbering{roman}
+\pagestyle{scrheadings}
+\tableofcontents
+
+
+
+\mainmatter
+\chapter{Einleitung}
+
+\todo{... einleitende Worte...}
+
+\chapter{asdf}
+\blindtext \cite{beispielquelle}
+
+\blindtext[42]
+
+\chapter{Zusammenfassung}
+\todo{}
+
+\appendix
+\cleardoublepage
+%\chapter{Literatur}
+\bibliographystyle{alphadin}
+
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+
+\bibliography{literatur} % -> literatur.bib
+
+\chapter{Verzeichnis der Formelzeichen}
+
+\begin{tabular}{ll}
+$d$ & Störeingang \\
+$m$ & Dimension des Eingangs \\
+$\Delta t$ & Verzögerungszeit \todo{dummy}
+\end{tabular}
+
+\chapter{Anhang}
+
+\todo{}
+
+\end{document}

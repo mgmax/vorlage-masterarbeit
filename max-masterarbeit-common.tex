@@ -1,0 +1,106 @@
+% Kodierung und Ausgabeformat:
+\usepackage[ngerman]{babel} % dt. Zeichentrennung
+\usepackage{lmodern} % TODO Schriftart
+%\usepackage{newtxtext,newtxmath}
+%\usepackage{charter}
+%\usepackage[expert]{mathdesign} % TODO Schriftart
+\usepackage[T1]{fontenc} % interne Schriftkodierung von Tex
+\usepackage[utf8]{inputenc} % Zeichenkodierung der Dateien UTF8
+\usepackage[draft=false]{hyperref} % anklickbare Links (Seitenzahlen etc.) im PDF
+\usepackage[final]{graphicx}
+
+\usepackage[usenames,dvipsnames,svgnames]{xcolor} % allerlei Features in \color, z.B. Mischen von Farben mit \color{blue!30!black}
+\color{black} % damit nicht Text manchmal als dunkelstgrau rauskommt
+
+% Entwurfsmodus - Warnung
+% der draft mode markiert überlange Zeilen mit schwarzen Kästchen am rechten Rand
+% Zu deaktivieren für die fertige Fassung, d.h das [draft] aus \documentclass... im Hauptdokument entfernen
+\usepackage{ifdraft}
+% Bitte als \documentclass[draft]{...} für Entwürfe laden und das draft weglassen, sobald die fertige Datei erstellt wird
+\ifdraft{
+\ClassWarningNoLine{}{Entwurfsmodus [draft] ist an. Bitte ausschalten, sobald das Dokument fertig ist.}
+}{}
+
+
+
+
+
+
+% Feature-Pakete
+\usepackage{csquotes} % für \enquote{Text in Anführungszeichen}
+% für \text in Matheumgebungen.
+% fleqn = \equation ist linksbündig
+\usepackage[fleqn]{amsmath}
+% \mathbb{R} und weitere Symbole
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{subfig} % \subfloat für Unter-figures, \subref für Bezüge darauf
+
+\usepackage[german]{cleveref}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\tikzstyle{pfeil}=[->, semithick]
+\tikzstyle{pfeilR}=[pfeil, <-]
+\tikzstyle{block}=[rectangle,draw,thick, minimum height=2em]
+
+
+\usepackage{blindtext}
+\usepackage{siunitx} % korrektes Setzen von Einheiten mit \SI{1234}{km} und auch Komma-Zahlen wie \SI{1.4e12} -> 1,4 . 10^12
+\sisetup{locale=DE}
+
+\ifdraft{
+\newcommand{\todo}[1]{{\color{black!60} [TODO #1]}}
+\newcommand{\randnotiz}[1]{\marginpar{\raggedleft #1}}
+}{
+\ClassWarningNoLine{}{Entwurfsmodus [draft] ist aus, TODO und randnotiz Kommandos sind deaktiviert (TODO: stattdessen nur konkrete Warnungen).}
+}
+
+
+
+% TODO \titlehead{{\Large Universit"at Schlauenheim \hfill SS~2001\\}
+%Institut f"ur Raumkr"ummung\\
+%Hochschulstra"se~12\\
+%34567 Schlauenheim}
+
+% Eulersche Zahl
+\newcommand{\ee}{\mathrm{e}}
+
+% 2-zeiliger Vektor/Matrix
+% [ #1
+%   #2 ]
+\newcommand{\vektorZwei}[2]{\left[ \begin{matrix} #1 \\ #2 \end{matrix} \right]}
+% beliebige Matrix in eckigen Klammern
+\newcommand{\vektor}[1]{\left[ \begin{matrix} #1 \end{matrix} \right]}
+
+
+% Erwartungswert
+\newcommand{\ew}[1]{\mathop{\mathcal{E}}\!\left\{#1\right\}}
+% Erwartungswert bzgl Variable \ewBezug{v}{Funktion(v)}
+\newcommand{\ewBezug}[2]{\mathop{\mathcal{E}_{#1}}\!\left\{#2\right\}}
+
+% R: Menge der reellen Zahlen
+\newcommand{\R}{\mathbb{R}}
+% gerades d für Integrale/Ableitungen:
+% \diff{x} für dx + passenden Leerraum
+\newcommand{\diff}[1]{\mathrm{d}#1\,}
+
+\newcommand{\mathupright}[1]{\mathrm{#1}}
+\newcommand{\spur}{\mathupright{spur}}
+\newcommand{\diag}{\mathupright{diag}}
+
+\newcommand{\titelseiteLRT}{
+	\begin{titlepage}
+	\makeatletter
+	\begin{tikzpicture}[remember picture,overlay,every node/.style={text width=.9\linewidth, align=center}]
+			\node[below = 5.9cm of current page.north] (title)  {\Large \bfseries \@title };
+		\node[text width=10cm, align=center, below=6cm of title.north] (arbeitstyp) {Als \@subject\\vorgelegt von};
+		\node[below=3.25cm of arbeitstyp.north] (author) {\large \bfseries \@author};
+		\node[below=8cm of author.north] (lehrstuhl) {\lehrstuhl};
+		\node[below=3.8cm of lehrstuhl.north] {\datumTitelseite};
+	\end{tikzpicture}
+	\makeatother
+	\end{titlepage}
+}
