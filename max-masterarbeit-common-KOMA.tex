@@ -4,14 +4,25 @@
 
 
 \pagestyle{scrheadings}
-\newcommand{\entwurfsmarkierung}{\ifdraft{Entwurf, Stand \today}}
+\newcommand{\entwurfsmarkierung}{\ifdraft{\textsl{Entwurf, Stand \today}}}
 \cfoot[\entwurfsmarkierung]{\entwurfsmarkierung}
 
 \KOMAoptions{paper=a4, fontsize=12pt}
-\KOMAoptions{headsepline, footsepline} % Querlinien als Trennung zwischen Inhal und Kopf- und Fußzeile
+\KOMAoptions{headsepline, footsepline, plainfootsepline} % Querlinien als Trennung zwischen Inhal und Kopf- und Fußzeile; Fußzeilenlinie auch bei Kapitelanfang (Seitenstil plain)
+\setkomafont{pageheadfoot}{\scshape} % Kopf- und Fußzeile in Kapitälchen
 \KOMAoptions{BCOR=8mm} % Bindekorrektur: wieviel wird innenliegende Rand einer halben Doppelseite durch die Bindung und das "Knicken" einer Seite kleiner?
 \usepackage[onehalfspacing]{setspace} % Zeilenhöhe 1.5 
 \usepackage[final,activate={true,nocompatibility},shrink=10,stretch=10]{microtype} % Schrift minimalst stauchen/dehnen, damit Silbentrennung besser klappt
+
+
+
+% Am Anfang des Kapitels die Überschrift als "Kapitel 2 \n Reglerentwurf" setzen
+\KOMAoptions{headings=twolinechapter}
+% in der Kopfzeile aber nur als "2 Reglerentwurf"
+\renewcommand*{\chaptermarkformat}{\arabic{chapter} }
+
+% Satzspiegel - hingebastelt damit es ähnlich zur alten LRT Vorlage ist.
+\KOMAoptions{footinclude=false}
 \KOMAoptions{DIV=14} % Satzspiegel - DIV ist ein ganzzahliger "Frickelfaktor", je größer desto weniger Seitenrand. Das Verhältnis der Seitenränder zueinander folgt dann typographischen Vorgaben, man sollte es deshalb nicht antasten.
 % TODO der Wert 14 kommt der alten Vorlage am nächsten, typographisch wäre ggf. ein größerer automatisch berechneter Rand DIV=calc sinnvoll.
 \KOMAoptions{titlepage=firstiscover} % TODO
