@@ -1,0 +1,19 @@
+# travis wants some language, so just fake it...
+language: c
+compiler:
+- gcc
+
+# TeX packages
+addons:
+  apt:
+    packages:
+        - texlive
+        - texlive-lang-german
+        - texlive-latex-recommended
+        - texlive-latex-extra
+
+# save computing time, cache everything (as far as possible)
+cache:
+- apt
+
+script: make
