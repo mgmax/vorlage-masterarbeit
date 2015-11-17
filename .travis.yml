@@ -15,6 +15,7 @@ addons:
 # for old ubuntu trusty:
         - latex-xcolor
         - texlive-latex3
+# fuck it, they don't have everything on that old ubuntu...
 
 # save computing time, cache everything (as far as possible)
 cache:
