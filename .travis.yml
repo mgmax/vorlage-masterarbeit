@@ -12,6 +12,8 @@ addons:
         - texlive-latex-recommended
         - texlive-latex-extra
         - lmodern
+# for old ubuntu trusty:
+        - latex-xcolor
 
 # save computing time, cache everything (as far as possible)
 cache:
