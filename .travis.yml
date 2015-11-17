@@ -11,6 +11,7 @@ addons:
         - texlive-lang-german
         - texlive-latex-recommended
         - texlive-latex-extra
+        - lmodern
 
 # save computing time, cache everything (as far as possible)
 cache:
