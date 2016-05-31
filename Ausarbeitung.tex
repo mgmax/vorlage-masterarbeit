@@ -1,4 +1,27 @@
 \documentclass[draft]{max-masterarbeit} % draft entfernen, um die "Entwurf"-Markierung in der Fußzeile zu deaktivieren
+\usepackage{textcomp} % für listings benötigt
+\usepackage[final]{listings} % in draft mode wird nix angezeigt
+% Workaround gegen Leerzeichen im Kopieren-Einfügen von Listings im PDF
+\lstset{columns=fullflexible}
+% literate: Workaround für listings + UTF8
+% von https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+% mit Ergänzungen
+\lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1
+  {*}{{\char42}}1 {-}{{\char45}}1
+}
+\lstset{upquote=true}
 
 \subject{Masterarbeit}
 \title{Toller Titel}
@@ -60,6 +83,9 @@ solche gekennzeichnet.
 
 \todo{... einleitende Worte...}
 
+ölölölölölölölö Ümläute
+
+
 
 \chapter{TODO}
 \todo{Seitenränder sind nicht ideal...}
@@ -102,11 +128,38 @@ $m$ & Dimension des Eingangs \\
 $\Delta t$ & Verzögerungszeit \todo{dummy}
 \end{tabular}
 
-\chapter{Anhang}
+\chapter{Matlab Code}
 
 \todo{}
-\blindtext[8]
+%\blindtext[8]
+ööö
+\lstset{language=Matlab}
 
+\begin{lstlisting}[frame=single]
+% Das Wetter ist schön.
+temperatur = 35;
 
+% Regelungstechnik ist noch schöner.
+temperatur_soll = 25;
+a = [
+    0 1 0
+    0 -1 1
+    7 0 -1
+    ];
+c = [ 0 1 0 ];
+
+b = [ 1 0 1 ]';
+
+c*(a-sym('s')*eye(3))^-1*b
+rank(obsv(a,c))
+rank(ctrb(a,b))
+\end{lstlisting}
+
+Ziel der Vorlage: Das Listing ist aus Acrobat PDF Reader durch Kopieren und Einfügen 1:1 übernehmbar.
+Zur Zeit noch nicht ganz erreicht.
+
+\lstlistoflistings
+
+fsad8i
 
 \end{document}
